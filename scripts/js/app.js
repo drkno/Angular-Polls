@@ -1,26 +1,27 @@
 (function () {
     'use strict';
 
-    /* App Module */
-
-    var itemsApp = angular.module('pollsApp', [
-      'ngRoute',
-      'itemsControllers'
+    var pollsApp = angular.module('pollsApp', [
+        'ngRoute',
+        'itemsControllers'
     ]);
 
-    itemsApp.config(['$routeProvider',
-      function($routeProvider) {
+    pollsApp.config(['$routeProvider', function($routeProvider) {
         $routeProvider.
-          when('/items', {
-            templateUrl: 'partials/item-list.html',
-            controller: 'ItemListCtrl'
-          }).
-          when('/items/:itemId', {
-            templateUrl: 'partials/item-detail.html',
-            controller: 'ItemDetailCtrl'
-          }).
-          otherwise({
-            redirectTo: '/items'
-          });
+            when('/poll/:pollId', {
+                templateUrl: 'templates/poll.html',
+                controller: 'PollController'
+            }).
+            when('/items', {
+                templateUrl: 'templates/item-list.html',
+                controller: 'ItemListCtrl'
+            }).
+            when('/items/:itemId', {
+                templateUrl: 'templates/item-detail.html',
+                controller: 'ItemDetailCtrl'
+            }).
+            otherwise({
+                redirectTo: '/items'
+            });
       }]);
-}())
+}());

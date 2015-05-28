@@ -1,0 +1,7 @@
+<h1>{{poll.title}}</h1>
+<h2>{{poll.question}}</h2>
+<form name="pollForm">
+    <ul>
+        <li data-ng-repeat="answer in poll.answers">{{answer}} <input type="radio" name="voteRadio" value="{{$index}}"></li>
+    </ul>
+</form>
