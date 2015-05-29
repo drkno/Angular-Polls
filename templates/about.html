@@ -140,6 +140,69 @@ potentially be disabled but in this example system it is left in for convenience
 <p>This was all implemented using AngularJS JSONP requests to the backend API.</p>
 
 <h3>Poll Administration</h3>
+<p>Poll administration is possible using the "Results" item on the main navigation bar. From the page that appears it is possible
+    to select a poll. Upon selecting a poll, the user will be presented with the question, a pie graph and table of results as
+    well as a series of buttons to do different things with the poll.</p>
+
+<div class="table-bordered" style="padding: 5px">
+    <table style="display: inline-block">
+        <tbody>
+            <tr>
+                <td>
+                    <canvas class="chart chart-pie" data-data="[4,3,1,0]" data-labels="[Something,SomethingElse,MoreSomething,AnotherSomething]" data-legend="true"></canvas>
+                </td>
+                <td>
+                <table class="table" style="width: 100%">
+                    <thead>
+                        <tr>
+                            <th>Answer</th>
+                            <th>Votes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Something</th>
+                            <td>4</td>
+                        </tr>
+                        <tr>
+                            <th>SomethingElse</th>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <th>MoreSomething</th>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <th>AnotherSomething</th>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<p>The buttons, as seen below, provide options to go back to the poll selection page, reset the vote count and
+delete the poll.</p>
+<p>Attempting to delete the poll or reset the votes will be met with a confirmation box like the following:</p>
+<div class="table-bordered" style="padding: 5px">
+    <p>
+        <button class="btn btn-primary">Back To Results</button>
+        <button class="btn btn-danger">Reset Poll</button>
+        <button class="btn btn-danger">Delete Poll</button>
+    </p>
+    <div class="alert alert-danger" role="alert">
+        Deleting votes on this poll is irreversible. Are you sure you want to continue?
+        <span style="float: right; transform: translate(0%,-25%);">
+            <button class="btn btn-success">No! Get me out of here.</button>
+            <button class="btn btn-danger">Yes, I know what I am doing.</button>
+        </span>
+    </div>
+</div>
+<h4>Implementation</h4>
+The chart was implemented using Chart.js and Anguar-Chart.js (an angular wrapper for Chart.js).
+The alert message was created using Bootstrap.
 
 <h3>Loading and Errors</h3>
 <p>During loading on slow connections, each page will show a loading bar.
