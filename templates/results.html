@@ -1,0 +1,12 @@
+<div class="jumbotron">
+    <h1>Create A Poll</h1>
+    <p>Create a poll to find out wonderful new useless information from your users. It is a simple 1 step process and can be edited later if you choose.</p>
+    <p>
+        <a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">Create a new poll &raquo;</a>
+    </p>
+</div>
+
+<h3 class="list-group-item-heading">Available Polls</h3>
+<div class="list-group" data-ng-repeat="poll in polls">
+    <a href="#/result/{{poll.id}}" class="list-group-item">{{poll.title}}</a>
+</div>

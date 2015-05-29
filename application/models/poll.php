@@ -256,14 +256,7 @@ class Poll extends CI_Model {
 		$CI->db->order_by('Answers.id', 'asc');
 		$result = $CI->db->get()->result_array();
 
-        // Result formatting
-        $votes = array();
-        $answers = array();
-        foreach ($result as $row) {
-            $votes[] = $row['votes'];
-            $answers[] = $row['answer'];
-        }
-		return array('votes' => $votes, 'answers' => $answers);
+		return $result;
 	}
 
     /**

@@ -161,8 +161,14 @@ class Services extends REST_Controller
 	{
 		try {
 			$this->load->model('poll');
+            $poll = Poll::read($pollId);
 			$votes = Poll::getVotes($pollId);
-			$this->response($votes, 200);
+			$result = array(
+                'votes' => $votes,
+                'title' => $poll->title,
+                'question' => $poll->question
+            );
+			$this->response($result, 200);
 		}
 		catch (Exception $e) {
 			$this->response(NULL, 404);

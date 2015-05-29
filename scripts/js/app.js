@@ -10,11 +10,15 @@
         $routeProvider.
             when('/polls', {
                 templateUrl: 'templates/polls.html',
-                controller: 'PollsController'
+                controller: 'PollsListController'
             }).
             when('/poll/:pollId', {
                 templateUrl: 'templates/poll.html',
                 controller: 'PollController'
+            }).
+            when('/results', {
+                templateUrl: 'templates/results.html',
+                controller: 'ResultsListController'
             }).
             when('/result/:pollId', {
                 templateUrl: 'templates/result.html',
