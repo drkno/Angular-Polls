@@ -28,7 +28,7 @@ class Poll extends CI_Model {
 		$CI =& get_instance();
 		$CI->load->database();
 		
-		$query = $CI->db->get_where('Polls', array('id'=>$id));
+		$query = $CI->db->get_where('polls', array('id'=>$id));
 		if ($query->num_rows !== 1) {
             throw new Exception("Poll does not exist.");
         }
@@ -54,7 +54,7 @@ class Poll extends CI_Model {
 		$CI->load->database();
 
         $CI->db->select('*');
-        $CI->db->from('Answers');
+        $CI->db->from('answers');
         $CI->db->where('poll', $id);
         $CI->db->order_by('id', 'asc');
 
@@ -79,7 +79,7 @@ class Poll extends CI_Model {
 		$CI->load->database();
 		
 		$CI->db->select('id, title');
-		$CI->db->from('Polls');
+		$CI->db->from('polls');
 		$polls = array();
 		foreach ($CI->db->get()->result() as $poll) {
 			$polls[] = $poll;
@@ -136,7 +136,7 @@ class Poll extends CI_Model {
             'title' => $poll->title,
             'question' => $poll->question
         );
-        $CI->db->insert('Polls', $pollData);
+        $CI->db->insert('polls', $pollData);
         $id = $CI->db->insert_id();
 
         Poll::addAnswers($CI, $id, $poll->answers);
@@ -166,7 +166,7 @@ class Poll extends CI_Model {
             'question' => $poll->question
         );
         $CI->db->where('id', $id);
-        $CI->db->update('Polls', $pollData);
+        $CI->db->update('polls', $pollData);
     }
 
     /**
@@ -183,7 +183,7 @@ class Poll extends CI_Model {
                 'answer' => $answer
             );
         }
-        $CI->db->insert_batch('Answers', $answersData);
+        $CI->db->insert_batch('answers', $answersData);
     }
 
     /**
@@ -192,7 +192,7 @@ class Poll extends CI_Model {
      * @param $id ID of the poll to delete answers from.
      */
     private static function deleteAnswers($CI, $id) {
-        $CI->db->delete("Answers", array('poll' => $id));
+        $CI->db->delete("answers", array('poll' => $id));
     }
 
     /**
@@ -205,7 +205,7 @@ class Poll extends CI_Model {
         $CI->load->database();
 
         Poll::deleteAnswers($CI, $pollId);
-        $CI->db->delete("Polls", array('id' => $pollId));
+        $CI->db->delete("polls", array('id' => $pollId));
         $rowsChanged = intval($CI->db->affected_rows());
         if ($rowsChanged < 1) {
             // Safe to check after cause if it didn't exist, nothing would happen.
@@ -236,7 +236,7 @@ class Poll extends CI_Model {
 			'answer' => $answerId,
 			'ip' => $ip
 		);
-		$CI->db->insert('Votes', $data);
+		$CI->db->insert('votes', $data);
 	}
 
     /**
@@ -248,12 +248,12 @@ class Poll extends CI_Model {
         // Query
 		$CI =& get_instance();
 		$CI->load->database();
-		$CI->db->select('Answers.answer as answer, count(Votes.id) as votes');
-		$CI->db->from('Answers');
-		$CI->db->join('Votes', 'Answers.id=Votes.answer', 'left');
-		$CI->db->where('Answers.poll', $pollId);
-		$CI->db->group_by('Answers.id');
-		$CI->db->order_by('Answers.id', 'asc');
+		$CI->db->select('answers.answer as answer, count(votes.id) as votes');
+		$CI->db->from('answers');
+		$CI->db->join('votes', 'answers.id=votes.answer', 'left');
+		$CI->db->where('answers.poll', $pollId);
+		$CI->db->group_by('answers.id');
+		$CI->db->order_by('answers.id', 'asc');
 		$result = $CI->db->get()->result_array();
 
 		return $result;
@@ -271,7 +271,7 @@ class Poll extends CI_Model {
 		$answers = array_keys(Poll::readAnswers($pollId));
 
 		foreach ($answers as $answerId) {
-			$CI->db->delete("Votes", array('answer' => $answerId));
+			$CI->db->delete("votes", array('answer' => $answerId));
 		}
 	}
 };

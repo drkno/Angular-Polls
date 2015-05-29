@@ -1,36 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f792c86c-a0d0-471e-83e2-33dd8d96ca3f" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\Matthew\Documents\University\2015\S115 SENG365 Web Architectures\Assignments\Assignment 2\rest\scripts\js\app.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Matthew\Documents\University\2015\S115 SENG365 Web Architectures\Assignments\Assignment 2\rest\scripts\js\controllers.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Matthew\Documents\University\2015\S115 SENG365 Web Architectures\Assignments\Assignment 2\rest\scripts\js\headerController.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Matthew\Documents\University\2015\S115 SENG365 Web Architectures\Assignments\Assignment 2\rest\scripts\js\modifyController.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Matthew\Documents\University\2015\S115 SENG365 Web Architectures\Assignments\Assignment 2\rest\scripts\js\pollController.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Matthew\Documents\University\2015\S115 SENG365 Web Architectures\Assignments\Assignment 2\rest\scripts\js\pollsListController.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Matthew\Documents\University\2015\S115 SENG365 Web Architectures\Assignments\Assignment 2\rest\scripts\js\resultController.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Matthew\Documents\University\2015\S115 SENG365 Web Architectures\Assignments\Assignment 2\rest\scripts\js\resultsListController.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Matthew\Documents\University\2015\S115 SENG365 Web Architectures\Assignments\Assignment 2\rest\scripts\libraries\angular\angular-route.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Matthew\Documents\University\2015\S115 SENG365 Web Architectures\Assignments\Assignment 2\rest\scripts\libraries\angular\angular.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Matthew\Documents\University\2015\S115 SENG365 Web Architectures\Assignments\Assignment 2\rest\scripts\libraries\bootstrap\bootstrap-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Matthew\Documents\University\2015\S115 SENG365 Web Architectures\Assignments\Assignment 2\rest\scripts\libraries\bootstrap\bootstrap.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Matthew\Documents\University\2015\S115 SENG365 Web Architectures\Assignments\Assignment 2\rest\scripts\libraries\bootstrap\bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Matthew\Documents\University\2015\S115 SENG365 Web Architectures\Assignments\Assignment 2\rest\scripts\libraries\chartjs\angular-chart.css" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Matthew\Documents\University\2015\S115 SENG365 Web Architectures\Assignments\Assignment 2\rest\scripts\libraries\chartjs\angular-chart.css.map" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Matthew\Documents\University\2015\S115 SENG365 Web Architectures\Assignments\Assignment 2\rest\scripts\libraries\chartjs\angular-chart.min.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Matthew\Documents\University\2015\S115 SENG365 Web Architectures\Assignments\Assignment 2\rest\scripts\libraries\chartjs\angular-chart.min.js.map" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Matthew\Documents\University\2015\S115 SENG365 Web Architectures\Assignments\Assignment 2\rest\scripts\libraries\chartjs\chart.min.js" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Matthew\Documents\University\2015\S115 SENG365 Web Architectures\Assignments\Assignment 2\rest\templates\about.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Matthew\Documents\University\2015\S115 SENG365 Web Architectures\Assignments\Assignment 2\rest\templates\footer.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Matthew\Documents\University\2015\S115 SENG365 Web Architectures\Assignments\Assignment 2\rest\templates\header.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Matthew\Documents\University\2015\S115 SENG365 Web Architectures\Assignments\Assignment 2\rest\templates\loading.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Matthew\Documents\University\2015\S115 SENG365 Web Architectures\Assignments\Assignment 2\rest\templates\modify.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Matthew\Documents\University\2015\S115 SENG365 Web Architectures\Assignments\Assignment 2\rest\templates\poll.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Matthew\Documents\University\2015\S115 SENG365 Web Architectures\Assignments\Assignment 2\rest\templates\polls.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Matthew\Documents\University\2015\S115 SENG365 Web Architectures\Assignments\Assignment 2\rest\templates\result.html" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Matthew\Documents\University\2015\S115 SENG365 Web Architectures\Assignments\Assignment 2\rest\templates\results.html" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-    </list>
+    <list default="true" id="f792c86c-a0d0-471e-83e2-33dd8d96ca3f" name="Default" comment="" />
     <ignored path="rest.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -589,12 +560,12 @@
       <option name="number" value="Default" />
       <updated>1432778950635</updated>
       <workItem from="1432778952801" duration="33861000" />
-      <workItem from="1432848561473" duration="40149000" />
+      <workItem from="1432848561473" duration="40748000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74010000" />
+    <option name="totallyTimeSpent" value="74609000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
