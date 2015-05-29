@@ -1,7 +1,26 @@
-<h1>{{poll.title}}</h1>
-<h2>{{poll.question}}</h2>
-<form name="pollForm">
-    <ul>
-        <li data-ng-repeat="answer in poll.answers">{{answer}} <input type="radio" name="voteRadio" value="{{$index}}"></li>
-    </ul>
-</form>
+<div data-ng-include data-src="'templates/loading.html'"></div>
+<div data-ng-show="loaded">
+    <h1 class="page-header">{{poll.title}}</h1>
+    <div class="alert alert-info" role="alert">Click on a radio button below to answer the question.</div>
+    <h3>{{poll.question}}</h3>
+    <form name="pollForm">
+        <fieldset data-ng-disabled="voteMessage != ''">
+            <ul class="list-group">
+                <li data-ng-repeat="answer in poll.answers" class="list-group-item">
+                    <input id="answer_{{$index}}" type="radio" name="voteRadio"
+                           required data-ng-model="$parent.answer" data-ng-change="performVote()" value="{{$index}}">
+                    <label for="answer_{{$index}}">{{answer}}</label>
+                </li>
+            </ul>
+        </fieldset>
+    </form>
+    <p>{{voteMessage}}</p>
+</div>
+<p>
+    <button class="btn btn-primary" data-ng-click="navigate('back')">Back</button>
+    <span data-ng-show="loaded">
+        <button class="btn btn-success" data-ng-click="reset()"
+                data-ng-show="voteMessage != ''">Again?</button>
+        <button class="btn btn-info"  data-ng-click="navigate('result')">Results</button>
+    </span>
+</p>

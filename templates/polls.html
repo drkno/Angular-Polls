@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+<h1>Polls</h1>
+<h2>Which poll would you like to view?</h2>
 
-</body>
-</html>
+<ul>
+    <li data-ng-repeat="poll in polls">
+        <a href="#/poll/{{poll.id}}">{{poll.title}}</a>
+    </li>
+</ul>

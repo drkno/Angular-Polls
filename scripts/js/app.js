@@ -3,25 +3,25 @@
 
     var pollsApp = angular.module('pollsApp', [
         'ngRoute',
-        'itemsControllers'
+        'pageControllers'
     ]);
 
     pollsApp.config(['$routeProvider', function($routeProvider) {
         $routeProvider.
+            when('/polls', {
+                templateUrl: 'templates/polls.html',
+                controller: 'PollsController'
+            }).
             when('/poll/:pollId', {
                 templateUrl: 'templates/poll.html',
                 controller: 'PollController'
             }).
-            when('/items', {
-                templateUrl: 'templates/item-list.html',
-                controller: 'ItemListCtrl'
-            }).
-            when('/items/:itemId', {
-                templateUrl: 'templates/item-detail.html',
-                controller: 'ItemDetailCtrl'
+            when('/result/:pollId', {
+                templateUrl: 'templates/result.html',
+                controller: 'ResultController'
             }).
             otherwise({
-                redirectTo: '/items'
+                redirectTo: '/polls'
             });
       }]);
 }());

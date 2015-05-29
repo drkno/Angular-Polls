@@ -1,26 +1,26 @@
 (function () {
     'use strict';
 
-    var itemList = [
-        {id: 1, name: 'Knurled widget', stock: 23},
-        {id: 2, name: 'Sky hook', stock: 1},
-        {id: 3, name: 'Feathered codpiece', stock: 111}
-    ];
+    var itemsControllers = angular.module('pageControllers', ['chart.js', 'ui.bootstrap']);
 
-    var itemsControllers = angular.module('itemsControllers', []);
+    itemsControllers.controller('HeaderController', ['$scope', '$location',
+        function ($scope, $location) {
+            $scope.current = function (currLocation) {
+                return $location.path().startsWith(currLocation);
+            };
+        }
+    ]);
 
-    itemsControllers.controller('PollController', ['$scope', '$http', '$routeParams',
-        function ($scope, $http, $routeParams) {
-            $scope.poll = undefined;
-            var pollRestUrl = 'index.php/services/polls/' + $routeParams.pollId
-                + '?callback=JSON_CALLBACK';
-
-            $http.jsonp(pollRestUrl)
+    itemsControllers.controller('PollsController', ['$scope', '$http',
+        function ($scope, $http) {
+            $scope.polls = undefined;
+            var pollsRestUrl = 'index.php/services/polls/?callback=JSON_CALLBACK';
+            $http.jsonp(pollsRestUrl)
                 .success(function(data) {
-                    $scope.poll = data;
+                    $scope.polls = data;
                 })
                 .error(function(data, status, headers, config) {
-                    console.log("Error loading poll. Status was " + status + ".");
+                    console.log("Error loading list of polls. Status was " + status + ".");
                 }
             );
         }
@@ -43,4 +43,5 @@
             }
         }
     ]);
+
 }());
