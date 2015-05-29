@@ -6,36 +6,36 @@
         <title>VOTE Jagged</title>
 
         <!-- CSS -->
-        <link rel="stylesheet" href="scripts/libraries/bootstrap/bootstrap.min.css">
-        <link rel="stylesheet" href="scripts/libraries/bootstrap/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="scripts/libraries/chartjs/angular-chart.css">
+        <link rel="stylesheet" href="application/third_party/bootstrap/bootstrap.min.css">
+        <link rel="stylesheet" href="application/third_party/bootstrap/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="application/third_party/chartjs/angular-chart.css">
 
         <!-- 3rd Party Libraries -->
-        <script src="scripts/libraries/angular/angular.js"></script>
-        <script src="scripts/libraries/angular/angular-route.js"></script>
-        <script src="scripts/libraries/chartjs/chart.min.js"></script>
-        <script src="scripts/libraries/chartjs/angular-chart.min.js"></script>
-        <script src="scripts/libraries/bootstrap/bootstrap.js"></script>
+        <script src="application/third_party/angular/angular.js"></script>
+        <script src="application/third_party/angular/angular-route.js"></script>
+        <script src="application/third_party/chartjs/chart.min.js"></script>
+        <script src="application/third_party/chartjs/angular-chart.min.js"></script>
+        <script src="application/third_party/bootstrap/bootstrap.js"></script>
 
         <!-- Page Controllers -->
-        <script src="scripts/js/app.js"></script>
-        <script src="scripts/js/controllers.js"></script>
-        <script src="scripts/js/pollsListController.js"></script>
-        <script src="scripts/js/resultsListController.js"></script>
-        <script src="scripts/js/pollController.js"></script>
-        <script src="scripts/js/resultController.js"></script>
-        <script src="scripts/js/headerController.js"></script>
-        <script src="scripts/js/modifyController.js"></script>
+        <script src="application/controllers/app.js"></script>
+        <script src="application/controllers/controllers.js"></script>
+        <script src="application/controllers/pollsListController.js"></script>
+        <script src="application/controllers/resultsListController.js"></script>
+        <script src="application/controllers/pollController.js"></script>
+        <script src="application/controllers/resultController.js"></script>
+        <script src="application/controllers/headerController.js"></script>
+        <script src="application/controllers/modifyController.js"></script>
     </head>
     <body>
-        <div data-ng-include data-src="'templates/header.html'"></div>
+        <div data-ng-include data-src="'application/views/header.html'"></div>
         <div class="container">
             <div data-ng-view>
                 <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100"
                      aria-valuemin="0" aria-valuemax="100" style="width: 45%; height: 25px; float: none;">
                 </div>
             </div>
-            <div data-ng-include data-src="'templates/footer.html'"></div>
+            <div data-ng-include data-src="'application/views/footer.html'"></div>
         </div>
     </body>
 </html>

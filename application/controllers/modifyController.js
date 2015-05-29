@@ -46,10 +46,12 @@
                     $scope.poll.answers = [];
                 }
                 $scope.poll.answers.push("");
+                $scope.validateForm();
             };
 
             $scope.removeAnswer = function(index) {
                 $scope.poll.answers.splice(index, 1);
+                $scope.validateForm();
             };
 
             $scope.validateForm = function() {

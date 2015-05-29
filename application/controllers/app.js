@@ -9,31 +9,31 @@
     pollsApp.config(['$routeProvider', function($routeProvider) {
         $routeProvider.
             when('/polls', {
-                templateUrl: 'templates/polls.html',
+                templateUrl: 'application/views/polls.html',
                 controller: 'PollsListController'
             }).
             when('/poll/:pollId', {
-                templateUrl: 'templates/poll.html',
+                templateUrl: 'application/views/poll.html',
                 controller: 'PollController'
             }).
             when('/results', {
-                templateUrl: 'templates/results.html',
+                templateUrl: 'application/views/results.html',
                 controller: 'ResultsListController'
             }).
             when('/result/:pollId', {
-                templateUrl: 'templates/result.html',
+                templateUrl: 'application/views/result.html',
                 controller: 'ResultController'
             }).
             when('/modify', {
-                templateUrl: 'templates/modify.html',
+                templateUrl: 'application/views/modify.html',
                 controller: 'ModifyController'
             }).
             when('/modify/:pollId', {
-                templateUrl: 'templates/modify.html',
+                templateUrl: 'application/views/modify.html',
                 controller: 'ModifyController'
             }).
             when('/about', {
-                templateUrl: 'templates/about.html'
+                templateUrl: 'application/views/about.html'
             }).
             otherwise({
                 redirectTo: '/polls'

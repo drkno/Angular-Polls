@@ -149,7 +149,9 @@ potentially be disabled but in this example system it is left in for convenience
         <tbody>
             <tr>
                 <td>
-                    <canvas class="chart chart-pie" data-data="[4,3,1,0]" data-labels="[Something,SomethingElse,MoreSomething,AnotherSomething]" data-legend="true"></canvas>
+                    <canvas class="chart chart-pie" data-data="[4,3,1,0]"
+                            data-labels="[Something,SomethingElse,MoreSomething,AnotherSomething]"
+                            data-legend="true"></canvas>
                 </td>
                 <td>
                 <table class="table" style="width: 100%">
@@ -183,12 +185,13 @@ potentially be disabled but in this example system it is left in for convenience
         </tbody>
     </table>
 </div>
-<p>The buttons, as seen below, provide options to go back to the poll selection page, reset the vote count and
-delete the poll.</p>
+<p>The buttons, as seen below, provide options to go back to the poll selection page, edit the poll,
+    reset the vote count and delete the poll.</p>
 <p>Attempting to delete the poll or reset the votes will be met with a confirmation box like the following:</p>
 <div class="table-bordered" style="padding: 5px">
     <p>
         <button class="btn btn-primary">Back To Results</button>
+        <button class="btn btn-warning">Edit Poll</button>
         <button class="btn btn-danger">Reset Poll</button>
         <button class="btn btn-danger">Delete Poll</button>
     </p>
@@ -203,6 +206,14 @@ delete the poll.</p>
 <h4>Implementation</h4>
 The chart was implemented using Chart.js and Anguar-Chart.js (an angular wrapper for Chart.js).
 The alert message was created using Bootstrap.
+
+<h3>Create/Edit a Poll</h3>
+<div class="alert alert-info" role="alert">
+    As per the assignment specification, polls must have at least 2 answers. Unlike the specification, updating a
+    poll will delete all votes on the poll. This is to make sure that data integrity within the database is maintained.
+</div>
+<p>Creating a poll is available on the Results list page and editing a poll is available from within the poll statistics
+page. Saving a new poll/changes is only possible if the input data is valid.</p>
 
 <h3>Loading and Errors</h3>
 <p>During loading on slow connections, each page will show a loading bar.
