@@ -24,6 +24,13 @@
                 templateUrl: 'templates/result.html',
                 controller: 'ResultController'
             }).
+            when('/modify/:pollId', {
+                templateUrl: 'templates/modify.html',
+                controller: 'ModifyController'
+            }).
+            when('/about', {
+                templateUrl: 'templates/about.html'
+            }).
             otherwise({
                 redirectTo: '/polls'
             });

@@ -1,0 +1,264 @@
+<style>
+    .sumHead {
+        text-align: center;
+    }
+    .pevWrap {
+        white-space: nowrap;
+    }
+</style>
+
+<h1 class="page-header">About VOTE Jagged</h1>
+
+<h3>Restful Services</h3>
+<div class="alert alert-info" role="alert">
+    <p><code>{BASE_URL}</code> refers to the directory of the anchor in this pages url.</p>
+    For example, <code>{BASE_URL}</code> would be <code>http://127.0.0.1/poll</code> when the url
+    of this page is <code>http://127.0.0.1/poll/#/about</code>.
+</div>
+<p>Where data is returned by or sent to the service, it is by default in JSON format. It is possible to
+    adjust this to a wide variety of different formats (XML, JSON, PHP [values only], HTML, CSV and Serialized)
+by modifying the content-type and accept headers.</p>
+<p>JSONP is also supported by appending <code>?callback={CALLBACK_NAME}</code> to the request URI, with
+    <code>{CALLBACK_NAME}</code> referring to the desired callback function name.</p>
+<p>In all use cases, the restful service will return a <code>404 Not Found</code> response on a failure and a
+<code>20X</code> code upon success.</p>
+<h4>Available Services</h4>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Service URL</th>
+            <th>Method</th>
+            <th>Request Data</th>
+            <th>Response Data</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="sumHead" colspan="4">Get a summary of all the available polls within the database.</td>
+        </tr>
+        <tr>
+            <td class="pevWrap"><code>{BASE_URL}/index.php/service/polls</code></td>
+            <td>GET</td>
+            <td>None</td>
+            <td>An object, representing a list of polls, their titles and their unique ID's.</td>
+        </tr>
+        <tr>
+            <td class="sumHead" colspan="4">Create a new poll.</td>
+        </tr>
+        <tr>
+            <td class="pevWrap"><code>{BASE_URL}/index.php/service/polls</code></td>
+            <td>POST</td>
+            <td>Object in same form as GET except without an ID.</td>
+            <td>None (Header contains a 'Location' field pointing to new poll).</td>
+        </tr>
+        <tr>
+            <td class="sumHead" colspan="4">Get details about a specific poll.</td>
+        </tr>
+        <tr>
+            <td class="pevWrap"><code>{BASE_URL}/index.php/service/polls/{POLL_ID}</code></td>
+            <td>GET</td>
+            <td>None</td>
+            <td>An object, representing a poll. Contains id, title, question and answers in 0-based indexed order.</td>
+        </tr>
+        <tr>
+            <td class="sumHead" colspan="4">Update an existing poll. Note: using this method will delete any votes on the poll.</td>
+        </tr>
+        <tr>
+            <td class="pevWrap"><code>{BASE_URL}/index.php/service/polls/{POLL_ID}</code></td>
+            <td>PUT</td>
+            <td>Object in same form as GET except without an ID.</td>
+            <td>None</td>
+        </tr>
+        <tr>
+            <td class="sumHead" colspan="4">Delete a poll.</td>
+        </tr>
+        <tr>
+            <td class="pevWrap"><code>{BASE_URL}/index.php/service/polls/{POLL_ID}</code></td>
+            <td>DELETE</td>
+            <td>None</td>
+            <td>None</td>
+        </tr>
+        <tr>
+            <td class="sumHead" colspan="4">Get the votes on a poll.</td>
+        </tr>
+        <tr>
+            <td class="pevWrap"><code>{BASE_URL}/index.php/service/votes/{POLL_ID}</code></td>
+            <td>GET</td>
+            <td>None</td>
+            <td>An object containing the poll title, question, and an answer-number of votes mapped array.</td>
+        </tr>
+        <tr>
+            <td class="sumHead" colspan="4">Delete all votes on a poll.</td>
+        </tr>
+        <tr>
+            <td class="pevWrap"><code>{BASE_URL}/index.php/service/votes/{POLL_ID}</code></td>
+            <td>DELETE</td>
+            <td>None</td>
+            <td>None</td>
+        </tr>
+        <tr>
+            <td class="sumHead" colspan="4">Vote on a poll.</td>
+        </tr>
+        <tr>
+            <td class="pevWrap"><code>{BASE_URL}/index.php/service/votes/{POLL_ID}/{ANSWER_INDEX}</code></td>
+            <td>POST</td>
+            <td>None</td>
+            <td>None</td>
+        </tr>
+    </tbody>
+</table>
+<h4>Implementation</h4>
+The implementation of these services was done using the CodeIgniter-RestServer project, which provides helpful methods
+for creating restful controllers. There are 3 backend database tables:
+<ul>
+    <li>Polls - this table describes individual polls.</li>
+    <li>Answers - contains the answers for each poll.</li>
+    <li>Votes - contains all the votes on a poll.</li>
+</ul>
+A single model object (Poll) is used to manipulate these tables and extract data. This could be abstracted more however
+for the perposes of this assignment it is not really required.
+
+<h3>Voting</h3>
+<p>Voting on polls is possible using the "Polls" item on the main navigation bar. From the page that appears it is possible
+to select a poll. Upon selecting a poll, the user will be presented with the question and a series of radio buttons
+with an answer to the question on each one.</p>
+<p>Clicking on a radio button will automatically place a vote with the selected option.</p>
+<p>
+Once voting has been performed, the radio options will be grayed out and the following will be shown at the bottom of the poll:
+<div class="table-bordered" style="padding: 5px">
+    <p>Thank you for voting on this poll, your vote has been received.</p>
+    <p>
+        <button class="btn btn-primary">Back</button>
+        <button class="btn btn-success">Again?</button>
+        <button class="btn btn-info">Results</button>
+    </p>
+</div>
+The buttons respectively will take you back to the poll selection page, allow you to vote again and take you to the
+to the administrive results page where voting statistics can be seen. This last option in a real system could
+potentially be disabled but in this example system it is left in for convenience.
+</p>
+<p>This was all implemented using AngularJS JSONP requests to the backend API.</p>
+
+<h3>Poll Administration</h3>
+
+<h3>Loading and Errors</h3>
+<p>During loading on slow connections, each page will show a loading bar.
+<div class="table-bordered" style="padding: 5px">
+    <div id="progressLoading" class="progress-bar progress-bar-striped active" role="progressbar"
+         aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
+         style="width: 45%; height: 25px; display: inline-block; float: none;">
+        <span>Loading...</span>
+    </div>
+</div>
+This loading bar will automatically disappear when the page has loaded, or if an error occurs,
+the "<code>Loading...</code>" text will change to an appropriate error message.</p>
+<p>At all times a back button is shown to allow the user to return to the previous page.</p>
+
+<h3>Known Bugs/Quirks</h3>
+<div class="alert alert-info" role="alert">These will be highlighted as follows:
+    <ul>
+        <li class="list-group-item-success">Green for usability or quirks, these are not actually problems.</li>
+        <li class="list-group-item-warning">Yellow for minor bugs which don't break features.</li>
+        <li class="list-group-item-danger">Red for major bugs or broken features.</li>
+    </ul>
+</div>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Bug/Quirk</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="list-group-item-success">In the poll result view, the Pie chart is blank when
+                there are no votes.</td>
+        </tr>
+        <tr>
+            <td class="list-group-item-success">Error messages within progress bars are not centered vertically.</td>
+        </tr>
+        <tr>
+            <td class="list-group-item-success">After using the toolbar there is a selection highlight (FFX38.0.1).</td>
+        </tr>
+        <tr>
+            <td class="list-group-item-warning">In the poll result view, clicking the reset button
+                immediately followed by the delete button (or vise versa) will cause warnings for both to be shown.</td>
+        </tr>
+        <tr>
+            <td class="list-group-item-warning">It is not possible to click on the row of the poll table
+                instead of the provided radio button.</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>External Libraries</h3>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Library</th>
+            <th>Usages</th>
+            <th>Website</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>AngularJS</td>
+            <td>Every Front-End Page</td>
+            <td><a href="https://angularjs.org/">https://angularjs.org/</a></td>
+        </tr>
+        <tr>
+            <td>Angular Chart</td>
+            <td>/result/*</td>
+            <td><a href="http://jtblin.github.io/angular-chart.js/">http://jtblin.github.io/angular-chart.js/</a></td>
+        </tr>
+        <tr>
+            <td>Bootstrap</td>
+            <td>Every Front-End Page</td>
+            <td><a href="http://getbootstrap.com">http://getbootstrap.com</a></td>
+        </tr>
+        <tr>
+            <td>Chart.js</td>
+            <td>/result/*</td>
+            <td><a href="http://www.chartjs.org/">http://www.chartjs.org/</a></td>
+        </tr>
+        <tr>
+            <td>CodeIgniter</td>
+            <td>/index.php/*</td>
+            <td><a href="http://www.codeigniter.com/">http://www.codeigniter.com/</a></td>
+        </tr>
+        <tr>
+            <td>CodeIgniter-RestServer</td>
+            <td>/index.php/*</td>
+            <td><a href="https://github.com/chriskacerguis/codeigniter-restserver/">
+                https://github.com/chriskacerguis/codeigniter-restserver/</a></td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Credits</h3>
+<p>Credit for assistance mainly goes to the people at <a href="http://stackoverflow.com">StackOverflow</a> whom had
+solutions for some of the problems I had.</p>
+<p>Most solutions were not noted at the time so specific attribution cannot be given.</p>
+
+<h3>Authorship</h3>
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Name</th>
+        <td>Matthew Knox</td>
+    </tr>
+    <tr>
+        <th>Date</th>
+        <td>29/05/2015</td>
+    </tr>
+    <tr>
+        <th>User Code</th>
+        <td>mrk45</td>
+    </tr>
+    <tr>
+        <th>Student ID</th>
+        <td>81118603</td>
+    </tr>
+    <tr>
+        <th>Email</th>
+        <td><a href="mailto:mrk45@uclive.ac.nz">mrk45@uclive.ac.nz</a></td>
+    </tr>
+</table>
