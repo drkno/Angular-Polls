@@ -3,29 +3,21 @@
 
     var module = angular.module('pageControllers');
 
-    module.controller('PollController', ['$scope', '$http', '$routeParams', '$location',
+    module.controller('ModifyController', ['$scope', '$http', '$routeParams', '$location',
         function ($scope, $http, $routeParams, $location) {
-            $scope.poll = undefined;
-            $scope.answer = undefined;
-            $scope.loaded = false;
-            $scope.voteMessage = "";
-            $scope.loadingMessage = "Loading...";
-
-            $scope.performVote = function() {
-                var voteRestUrl = 'index.php/services/votes/' + $scope.poll.id + '/' + $scope.answer;
-
-                $http.post(voteRestUrl, "")
-                    .success(function() {
-                        $scope.voteMessage = "Thank you for voting on this poll, your vote has been received.";
-                    })
-                    .error(function(data, status, headers, config) {
-                        console.log("Error voting on poll. Status was " + status + ".");
-                        $scope.voteMessage = "An error occurred while submitting your vote.";
-                    }
-                );
-            };
+            $scope.poll = {title:"",question:"",answers:[]};
+            $scope.loadingMessage = "";
+            $scope.loaded = true;
+            $scope.editing = false;
+            $scope.errorMessage = [];
 
             $scope.loadPoll = function() {
+                if (typeof $routeParams.pollId === 'undefined') {
+                    return; // we have opened the page
+                }
+                $scope.editing = true;
+                $scope.loaded = false;
+
                 var pollRestUrl = 'index.php/services/polls/' + $routeParams.pollId
                     + '?callback=JSON_CALLBACK';
 
@@ -33,6 +25,7 @@
                     .success(function(data) {
                         $scope.loaded = true;
                         $scope.poll = data;
+                        $scope.validateForm();
                     })
                     .error(function(data, status, headers, config) {
                         console.log("Error loading poll. Status was " + status + ".");
@@ -43,20 +36,61 @@
 
             $scope.navigate = function(location) {
                 switch (location) {
-                    case 'back': $location.path('/polls'); break;
-                    case 'result': $location.path('/result/' + $scope.poll.id); break;
+                    case 'back': $location.path('/results'); break;
                     default: $location.path(location); break;
                 }
-            }
+            };
 
-            $scope.reset = function() {
-                $scope.answer = undefined;
-                $scope.voteMessage = "";
-                $scope.pollForm.$setPristine();
-            }
+            $scope.addAnswer = function() {
+                if (typeof $scope.poll.answers === 'undefined') {
+                    $scope.poll.answers = [];
+                }
+                $scope.poll.answers.push("");
+            };
 
+            $scope.removeAnswer = function(index) {
+                $scope.poll.answers.splice(index, 1);
+            };
+
+            $scope.validateForm = function() {
+                $scope.errorMessage = [];
+                if (!$scope.poll.title || $scope.poll.title.length  < 1 || $scope.poll.title.length > 255) {
+                    $scope.errorMessage.push("Title must be between 1 and 255 characters long.");
+                }
+
+                if (!$scope.poll.question || $scope.poll.question.length  < 1 || $scope.poll.question.length > 255) {
+                    $scope.errorMessage.push("Question must be between 1 and 255 characters long.");
+                }
+
+                if (!$scope.poll.answers || $scope.poll.answers.length < 2) {
+                    $scope.errorMessage.push("Poll must have at least two answers to be a valid poll.");
+                    return;
+                }
+
+                for (var i = 0; i < $scope.poll.answers.length; i++) {
+                    if (!$scope.poll.answers[i] || $scope.poll.answers[i].length  < 1
+                        || $scope.poll.answers[i].length > 255) {
+                        $scope.errorMessage.push("Answer " + (i+1) + " must be between 1 and 255 characters long.");
+                    }
+                }
+            };
+
+            $scope.save = function() {
+                var modifyRestUrl = 'index.php/services/polls/' + ($scope.editing ? $routeParams.pollId : '');
+                $scope.loaded = false;
+                ($scope.editing?$http.put(modifyRestUrl, $scope.poll):$http.post(modifyRestUrl, $scope.poll))
+                    .success(function() {
+                        $scope.loaded = true;
+                        $scope.navigate('back');
+                    })
+                    .error(function(data, status, headers, config) {
+                        console.log("Error saving. Status was " + status + ".");
+                        $scope.loadingMessage = "An error occurred while saving the poll.";
+                    }
+                );
+            };
             $scope.loadPoll();
+            $scope.validateForm();
         }
     ]);
-
 }());

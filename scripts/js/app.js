@@ -24,6 +24,10 @@
                 templateUrl: 'templates/result.html',
                 controller: 'ResultController'
             }).
+            when('/modify', {
+                templateUrl: 'templates/modify.html',
+                controller: 'ModifyController'
+            }).
             when('/modify/:pollId', {
                 templateUrl: 'templates/modify.html',
                 controller: 'ModifyController'

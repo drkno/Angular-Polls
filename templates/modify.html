@@ -1,26 +1,44 @@
 <div data-ng-include data-src="'templates/loading.html'"></div>
 <div data-ng-show="loaded">
-    <h1 class="page-header">{{poll.title}}</h1>
-    <div class="alert alert-info" role="alert">Click on a radio button below to answer the question.</div>
-    <h3>{{poll.question}}</h3>
-    <form name="pollForm">
-        <fieldset data-ng-disabled="voteMessage != ''">
-            <ul class="list-group">
-                <li data-ng-repeat="answer in poll.answers" class="list-group-item">
-                    <input id="answer_{{$index}}" type="radio" name="voteRadio"
-                           required data-ng-model="$parent.answer" data-ng-change="performVote()" value="{{$index}}">
-                    <label for="answer_{{$index}}">{{answer}}</label>
-                </li>
-            </ul>
-        </fieldset>
+    <h1 class="page-header">Create or Edit Poll</h1>
+    <div class="alert alert-warning" role="alert" data-ng-show="editing">WARNING: Editing this poll will delete any existing votes.</div>
+
+    <form name="inputForm">
+        <table class="table">
+            <tr>
+                <th><label for="pollTitleInput">Poll Title</label></th>
+                <td><input id="pollTitleInput" type="text" required maxlength="255" data-ng-change="validateForm()"
+                           minlength="1" data-ng-model="poll.title" style="width: 100%;"></td>
+            </tr>
+            <tr>
+                <th><label for="pollQuestionInput">Poll Question</label></th>
+                <td><input id="pollQuestionInput" type="text" required maxlength="255" data-ng-change="validateForm()"
+                           minlength="1" data-ng-model="poll.question" style="width: 100%;"></td>
+            </tr>
+            <tr data-ng-repeat="(i, answer) in poll.answers track by $index">
+                <th><label for="pollAnswer{{i}}Input">Answer {{i + 1}}</label></th>
+                <td><input id="pollAnswer{{i}}Input" type="text" required maxlength="255" data-ng-change="validateForm()"
+                           minlength="1" data-ng-model="$parent.poll.answers[i]" style="width: 100%;"></td>
+                <td><button class="btn btn-link" data-ng-click="removeAnswer($index)">Remove</button></td>
+            </tr>
+            <tr>
+                <th></th>
+                <td><button class="btn btn-info" data-ng-click="addAnswer()">Add New Answer</button></td>
+            </tr>
+        </table>
     </form>
-    <p>{{voteMessage}}</p>
 </div>
+
+<div class="alert alert-warning" role="alert" data-ng-show="errorMessage.length != 0">
+    <p>Error(s) occured validating your poll:</p>
+    <ul class="list" data-ng-repeat="error in errorMessage">
+        <li>{{error}}</li>
+    </ul>
+</div>
+
 <p>
-    <button class="btn btn-primary" data-ng-click="navigate('back')">Back</button>
+    <button class="btn btn-primary" data-ng-click="navigate('back')">Back to Results</button>
     <span data-ng-show="loaded">
-        <button class="btn btn-success" data-ng-click="reset()"
-                data-ng-show="voteMessage != ''">Again?</button>
-        <button class="btn btn-info"  data-ng-click="navigate('result')">Results</button>
+        <button class="btn btn-success" data-ng-disabled="errorMessage.length != 0" data-ng-click="save()">Save</button>
     </span>
 </p>

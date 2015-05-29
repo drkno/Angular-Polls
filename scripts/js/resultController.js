@@ -14,7 +14,7 @@
 
             $scope.getAnswers = function() {
                 var result = [];
-                if (typeof $scope.pollResults === 'undefined') return result;
+                if (!$scope.pollResults) return result;
                 for (var i = 0; i < $scope.pollResults.votes.length; i++) {
                     result.push($scope.pollResults.votes[i].answer);
                 }
@@ -23,7 +23,7 @@
 
             $scope.getVotes = function() {
                 var result = [];
-                if (typeof $scope.pollResults === 'undefined') return result;
+                if (!$scope.pollResults) return result;
                 for (var i = 0; i < $scope.pollResults.votes.length; i++) {
                     result.push($scope.pollResults.votes[i].votes);
                 }
@@ -33,6 +33,7 @@
             $scope.navigate = function(location) {
                 switch (location) {
                     case 'back': $location.path('/results'); break;
+                    case 'modify': $location.path('/modify/' + $routeParams.pollId); break;
                     default: $location.path(location); break;
                 }
             };
@@ -87,5 +88,4 @@
             $scope.getPollData();
         }
     ]);
-
 }());

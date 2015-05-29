@@ -31,29 +31,30 @@
                 </td>
             </tr>
         </table>
-    </div>
 
+        <p>
+            <button class="btn btn-primary" data-ng-click="navigate('back')">Back To Results</button>
+            <span data-ng-show="loaded">
+                <button class="btn btn-warning" data-ng-click="navigate('modify')">Edit Poll</button>
+                <button class="btn btn-danger" data-ng-click="resetWarning = true">Reset Poll</button>
+                <button class="btn btn-danger" data-ng-click="deleteWarning = true">Delete Poll</button>
+            </span>
+
+            <div class="alert alert-danger" role="alert" data-ng-show="resetWarning">
+                Deleting votes on this poll is irreversible. Are you sure you want to continue?
+                <span style="float: right; transform: translate(0%,-25%);">
+                    <button class="btn btn-success" data-ng-click="resetWarning = false">No! Get me out of here.</button>
+                    <button class="btn btn-danger" data-ng-click="reset()">Yes, I know what I am doing.</button>
+                </span>
+            </div>
+
+            <div class="alert alert-danger" role="alert" data-ng-show="deleteWarning">
+                Deleting a poll is irreversible. This is the 'nuclear option'. Are you sure you want to continue?
+                <span style="float: right; transform: translate(0%,-25%);">
+                    <button class="btn btn-success" data-ng-click="deleteWarning = false">No! Get me out of here.</button>
+                    <button class="btn btn-danger" data-ng-click="delete()">Yes, I know what I am doing.</button>
+                </span>
+            </div>
+        </p>
+    </div>
 </div>
-<p>
-    <button class="btn btn-primary" data-ng-click="navigate('back')">Back To Results</button>
-    <span data-ng-show="loaded">
-        <button class="btn btn-danger" data-ng-click="resetWarning = true">Reset Poll</button>
-        <button class="btn btn-danger" data-ng-click="deleteWarning = true">Delete Poll</button>
-    </span>
-
-    <div class="alert alert-danger" role="alert" data-ng-show="resetWarning">
-        Deleting votes on this poll is irreversible. Are you sure you want to continue?
-        <span style="float: right; transform: translate(0%,-25%);">
-            <button class="btn btn-success" data-ng-click="resetWarning = false">No! Get me out of here.</button>
-            <button class="btn btn-danger" data-ng-click="reset()">Yes, I know what I am doing.</button>
-        </span>
-    </div>
-
-    <div class="alert alert-danger" role="alert" data-ng-show="deleteWarning">
-        Deleting a poll is irreversible. This is the 'nuclear option'. Are you sure you want to continue?
-        <span style="float: right; transform: translate(0%,-25%);">
-            <button class="btn btn-success" data-ng-click="deleteWarning = false">No! Get me out of here.</button>
-            <button class="btn btn-danger" data-ng-click="delete()">Yes, I know what I am doing.</button>
-        </span>
-    </div>
-</p>
