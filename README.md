@@ -1,5 +1,5 @@
 # Angular-Polls
-SENG365 AngularJS Polls App. A web application using AngularJS and CodeIgniter to administer polls (as in voting). Polls can be created, modified, voted on and deleted.
+SENG365 AngularJS Polls App (21/20 Marks, A+/100%). A web application using AngularJS and CodeIgniter to administer polls (as in voting). Polls can be created, modified, voted on and deleted.
 
 ## Installing
 1. Make sure you have an appropriate version of PHP installed and a webserver.
